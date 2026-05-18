@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Pink Player</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ff4d96'/%3E%3Cpath d='M25 19 L25 45 L47 32 Z' fill='white'/%3E%3C/svg%3E" />
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 64px 24px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      letter-spacing: -0.005em;
+      color: #f3f3f5;
+      background: #0a0a0c;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    }
+    .head .icon { width: 48px; height: 48px; flex-shrink: 0; }
+    .head a { color: rgba(243,243,245,0.55); text-decoration: none; font-size: 12.5px; }
+    .head a:hover { color: #f3f3f5; }
+    h1 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+    .updated { color: rgba(243,243,245,0.45); font-size: 12.5px; margin-top: 4px; }
+    h2 {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 36px 0 10px;
+    }
+    p, ul { font-size: 14.5px; color: rgba(243,243,245,0.85); }
+    ul { padding-left: 22px; }
+    li { margin-bottom: 4px; }
+    a { color: #ff77b3; }
+    code {
+      background: rgba(255,255,255,0.06);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: "SF Mono", Menlo, monospace;
+      font-size: 12.5px;
+    }
+    .footer { margin-top: 60px; padding-top: 24px; border-top: 0.5px solid rgba(255,255,255,0.08); color: rgba(243,243,245,0.4); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" fill="#ff4d96"/>
+        <path d="M25 19 L25 45 L47 32 Z" fill="#fff"/>
+      </svg>
+      <div style="flex:1">
+        <h1>Privacy Policy</h1>
+        <p class="updated">Pink Player — Mini for YouTube Music · Last updated 2026-05-18</p>
+      </div>
+      <a href="index.html">← Home</a>
+    </div>
+
+    <h2>Summary</h2>
+    <ul>
+      <li>The extension runs entirely on your own device.</li>
+      <li>It does <strong>not</strong> create or use any user account.</li>
+      <li>It does <strong>not</strong> collect, store, or transmit personally identifying information.</li>
+      <li>It does <strong>not</strong> use analytics, telemetry, ads, or tracking pixels.</li>
+      <li>The only network requests it makes are to <a href="https://lrclib.net">LRCLib</a> to fetch synchronized lyrics for the track you are currently playing.</li>
+    </ul>
+
+    <h2>What data the extension accesses</h2>
+    <p>When you visit <code>music.youtube.com</code>, the extension reads — <em>only from that tab and only while it is open</em> — the following:</p>
+    <ul>
+      <li>title, artist, album-art image URL, and duration of the current track,</li>
+      <li>current playback position, paused/playing state, volume, like state,</li>
+      <li>list of upcoming tracks in your YouTube Music queue.</li>
+    </ul>
+    <p>This data is used solely to display the mini-player UI in the extension popup and is never written to any server or stored beyond the current browser session.</p>
+
+    <h2>What data is transmitted off-device</h2>
+    <p>To display synchronized lyrics, the extension sends the <strong>track title</strong>, <strong>artist name</strong>, and <strong>track duration</strong> to <a href="https://lrclib.net">https://lrclib.net</a>, a community-run lyrics database. No personal identifiers, IP-based identifiers, or YouTube account information are included in this request. LRCLib operates under its own privacy practices documented on its website. The extension does not transmit anything to any other third party.</p>
+
+    <h2>Local storage on your device</h2>
+    <p>The extension stores the following inside Chrome's local extension storage (<code>chrome.storage.local</code>), which is sandboxed to the extension and never synced to Google:</p>
+    <ul>
+      <li>Sleep timer state (mode and target time, while a timer is active).</li>
+    </ul>
+    <p>That's it. No listening history, no identifiers.</p>
+
+    <h2>Permissions used and why</h2>
+    <ul>
+      <li><code>tabs</code>: to locate your open YouTube Music tab so the popup can show current playback state.</li>
+      <li><code>storage</code>: to persist sleep-timer settings across short service-worker restarts.</li>
+      <li><code>alarms</code>: to fire the sleep timer at the requested time.</li>
+      <li>Host permission for <code>music.youtube.com</code>: to read player state and send playback commands.</li>
+      <li>Host permission for <code>lrclib.net</code>: to fetch lyrics, as described above.</li>
+    </ul>
+
+    <h2>Children</h2>
+    <p>The extension is not directed at children under 13 and does not knowingly collect any data from them.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If the extension's behavior changes in a way that affects data handling, this page will be updated and the "Last updated" date above will be bumped.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or concerns: please contact the developer email listed on the Chrome Web Store listing for Pink Player.</p>
+
+    <div class="footer">
+      Pink Player is an unofficial third-party tool. Not affiliated with or endorsed by YouTube or Google.
+    </div>
+  </div>
+</body>
+</html>
