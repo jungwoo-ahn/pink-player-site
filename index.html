@@ -132,36 +132,52 @@
     }
 
     /* =========================================================================
-       In Safari
+       Out in the wild — Chrome & Safari
        ========================================================================= */
-    .in-safari {
+    .wild {
       position: relative; z-index: 1;
       width: 100%; max-width: 1120px;
       margin: 80px 0 0;
       text-align: center;
     }
-    .in-safari h2 {
+    .wild h2 {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
       font-size: 32px; font-weight: 700;
       letter-spacing: -0.03em;
       margin: 0 0 8px;
     }
-    .in-safari .sub {
+    .wild .sub {
       margin: 0 0 28px;
       color: rgba(243,243,245,0.55);
       font-size: 14px;
     }
-    .in-safari .frame {
-      border-radius: 16px;
+    .wild .shots {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .wild .shot { text-align: center; }
+    .wild .shot .frame {
+      border-radius: 14px;
       overflow: hidden;
       outline: 0.5px solid rgba(255,255,255,0.10);
       outline-offset: -0.5px;
       box-shadow: 0 24px 60px rgba(0,0,0,0.45);
     }
-    .in-safari img {
+    .wild .shot img {
       display: block;
       width: 100%;
       height: auto;
+      background: #0a0a0c;
+    }
+    .wild .shot .label {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: rgba(243,243,245,0.5);
+      letter-spacing: 0;
+    }
+    @media (max-width: 760px) {
+      .wild .shots { grid-template-columns: 1fr; }
     }
 
     /* =========================================================================
@@ -240,11 +256,22 @@
     </article>
   </section>
 
-  <section class="in-safari">
-    <h2>In Safari, in the wild.</h2>
-    <p class="sub">Same player, native in Safari. Floats over any tab.</p>
-    <div class="frame">
-      <img src="screenshots/screenshot-safari.png" alt="Pink Player popup floating over a Safari window" />
+  <section class="wild">
+    <h2>Out in the wild.</h2>
+    <p class="sub">Same player, native in both Chrome and Safari. Floats over any tab.</p>
+    <div class="shots">
+      <div class="shot">
+        <div class="frame">
+          <img src="screenshots/screenshot-chrome.png" alt="Pink Player popup in Chrome, over a Google page" />
+        </div>
+        <p class="label">Chrome</p>
+      </div>
+      <div class="shot">
+        <div class="frame">
+          <img src="screenshots/screenshot-safari.png" alt="Pink Player popup in Safari, over apple.com" />
+        </div>
+        <p class="label">Safari</p>
+      </div>
     </div>
   </section>
 
