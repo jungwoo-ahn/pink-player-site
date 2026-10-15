@@ -3,284 +3,255 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pink Player — Mini for YouTube Music</title>
-  <meta name="description" content="Beautiful mini player for YouTube Music. Adaptive color, synced lyrics, queue, sleep timer." />
-  <meta property="og:title" content="Pink Player — Mini for YouTube Music" />
-  <meta property="og:description" content="Beautiful mini player for YouTube Music. Adaptive color, synced lyrics, queue, sleep timer." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/jungwoo-ahn/Pink-Player/main/screenshots/social-preview.png" />
+  <title>Pink Player — Mini player for YouTube Music</title>
+  <meta name="description" content="A mini player for YouTube Music that drops down from your browser toolbar. Synced lyrics, your queue and your playlists, one click from any tab." />
+  <link rel="canonical" href="https://jungwoo-ahn.github.io/pink-player-site/" />
+  <meta name="theme-color" content="#eef0f4" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jungwoo-ahn.github.io/pink-player-site/" />
+  <meta property="og:title" content="Pink Player — Mini player for YouTube Music" />
+  <meta property="og:description" content="Stay in your tab. Keep the music. Synced lyrics, your queue and your playlists, one click from any tab." />
+  <meta property="og:image" content="https://jungwoo-ahn.github.io/pink-player-site/screenshots/og-image.png" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="640" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ff4d96'/%3E%3Cpath d='M25 19 L25 45 L47 32 Z' fill='white'/%3E%3C/svg%3E" />
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    html, body { background: #0a0a0c; }
-    body {
-      margin: 0;
-      padding: 0 24px 64px;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-      letter-spacing: -0.01em;
-      color: #f3f3f5;
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .ambient {
-      position: absolute; top: 0; left: 0; right: 0; height: 720px; z-index: 0; pointer-events: none;
-      background: radial-gradient(60% 60% at 50% 0%, rgba(255,77,150,0.20), transparent 70%);
-    }
-
-    /* =========================================================================
-       Hero
-       ========================================================================= */
-    .hero {
-      position: relative; z-index: 1;
-      max-width: 520px; width: 100%;
-      text-align: center;
-      padding: 100px 0 56px;
-    }
-    .icon {
-      width: 112px; height: 112px;
-      margin: 0 auto 24px;
-      filter: drop-shadow(0 12px 30px rgba(255,77,150,0.35));
-    }
-    h1 {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
-      font-size: 42px; font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0 0 8px;
-    }
-    .tag {
-      font-size: 16px;
-      color: rgba(243,243,245,0.65);
-      margin: 0 0 12px;
-    }
-    .desc {
-      font-size: 14px;
-      color: rgba(243,243,245,0.55);
-      margin: 0 0 32px;
-      line-height: 1.6;
-    }
-    .actions {
-      display: flex; gap: 12px;
-      justify-content: center; flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 40px; padding: 0 18px;
-      border-radius: 20px;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: -0.01em;
-      text-decoration: none;
-      transition: transform 120ms ease, background-color 160ms ease, opacity 160ms ease;
-    }
-    .btn-primary { background: #ff4d96; color: #fff; }
-    .btn-primary:hover { transform: scale(1.03); }
-    .btn-ghost {
-      background: rgba(255,255,255,0.06);
-      color: #f3f3f5;
-      outline: 0.5px solid rgba(255,255,255,0.12);
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.10); }
-    .btn-disabled,
-    .btn-disabled:hover {
-      cursor: not-allowed;
-      opacity: 0.46;
-      transform: none;
-      background: rgba(255,255,255,0.04);
-    }
-    .btn svg { width: 16px; height: 16px; margin-right: 8px; }
-    .hint {
-      margin: 16px 0 0;
-      color: rgba(243,243,245,0.42);
-      font-size: 12px;
-    }
-
-    /* =========================================================================
-       Features
-       ========================================================================= */
-    .features {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 1120px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin: 24px 0 0;
-    }
-    .feature {
-      background: rgba(255,255,255,0.03);
-      border-radius: 20px;
-      outline: 0.5px solid rgba(255,255,255,0.08);
-      outline-offset: -0.5px;
-      overflow: hidden;
-      display: flex; flex-direction: column;
-    }
-    .feature img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 1280 / 800;
-      object-fit: cover;
-      background: #0a0a0c;
-    }
-    .feature .copy { padding: 20px 22px 24px; }
-    .feature h3 {
-      margin: 0 0 6px;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
-      font-size: 17px; font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .feature p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.55;
-      color: rgba(243,243,245,0.55);
-    }
-    @media (max-width: 760px) {
-      .features { grid-template-columns: 1fr; max-width: 520px; }
-    }
-
-    /* =========================================================================
-       Out in the wild — Chrome & Safari
-       ========================================================================= */
-    .wild {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 1120px;
-      margin: 80px 0 0;
-      text-align: center;
-    }
-    .wild h2 {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
-      font-size: 32px; font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0 0 8px;
-    }
-    .wild .sub {
-      margin: 0 0 28px;
-      color: rgba(243,243,245,0.55);
-      font-size: 14px;
-    }
-    .wild .shots {
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-    }
-    .wild .shot { text-align: center; }
-    .wild .shot .frame {
-      border-radius: 18px;
-      overflow: hidden;
-      outline: 0.5px solid rgba(255,255,255,0.10);
-      outline-offset: -0.5px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-    }
-    .wild .shot img {
-      display: block;
-      width: 100%;
-      height: auto;
-      background: #0a0a0c;
-    }
-    .wild .shot .label {
-      margin: 16px 0 0;
-      font-size: 13px;
-      color: rgba(243,243,245,0.55);
-      letter-spacing: 0;
-    }
-
-    /* =========================================================================
-       Footer
-       ========================================================================= */
-    .footer {
-      position: relative; z-index: 1;
-      max-width: 520px; width: 100%;
-      margin-top: 64px;
-      text-align: center;
-      color: rgba(243,243,245,0.4);
-      font-size: 11.5px;
-      line-height: 1.7;
-    }
-    .footer a { color: rgba(243,243,245,0.55); text-decoration: none; }
-    .footer a:hover { color: #f3f3f5; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <link rel="stylesheet" href="assets/player.css" />
+  <script src="assets/player.js" defer></script>
 </head>
 <body>
-  <div class="ambient"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <main class="hero">
-    <svg class="icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="32" cy="32" r="30" fill="#ff4d96"/>
-      <circle cx="32" cy="32" r="30" fill="none" stroke="rgba(0,0,0,0.14)" stroke-width="0.6"/>
-      <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-      <path d="M25 19 L25 45 L47 32 Z" fill="#fff"/>
-    </svg>
-    <h1>Pink Player</h1>
-    <p class="tag">Mini Player for YouTube Music</p>
-    <p class="desc">
-      A beautiful mini player for YouTube Music. Adaptive color from album art, synced lyrics, queue, sleep timer, keyboard shortcuts. No tracking, no ads.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/>
-          <circle cx="12" cy="12" r="3.5" fill="currentColor"/>
-          <path d="M12 2 L12 8.5 M20.66 7 L15 10.25 M3.34 7 L9 10.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-        Add to Chrome
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#ff4d96"/><path d="M25 19 L25 45 L47 32 Z" fill="#fff"/></svg>
+        Pink Player
       </a>
-      <span class="btn btn-ghost btn-disabled" aria-disabled="true" title="Temporarily unavailable while we prepare a notarized Mac build">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.05 12.5c-.03-2.7 2.2-4 2.3-4.06-1.25-1.83-3.2-2.08-3.9-2.1-1.66-.17-3.24.97-4.08.97-.85 0-2.14-.95-3.52-.92-1.81.03-3.49 1.05-4.42 2.67-1.88 3.27-.48 8.1 1.36 10.76.9 1.3 1.96 2.76 3.35 2.7 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.52.84 1.45-.02 2.37-1.32 3.26-2.62 1.03-1.5 1.45-2.97 1.47-3.05-.03-.01-2.82-1.08-2.85-4.32zm-2.67-7.94c.74-.9 1.24-2.15 1.1-3.4-1.07.05-2.36.72-3.13 1.6-.69.78-1.3 2.05-1.14 3.27 1.2.1 2.42-.6 3.17-1.47z"/>
-        </svg>
-        Mac download paused
-      </span>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link hide-sm" href="#tabs">Inside</a>
+        <a class="nav-link hide-sm" href="#keys">Shortcuts</a>
+        <a class="nav-link hide-sm" href="#privacy">Privacy</a>
+        <a class="btn btn-dark btn-sm" href="https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo">Add to Chrome</a>
+      </nav>
     </div>
-    <p class="hint">
-      Mac download is temporarily paused while we prepare a notarized build.
-    </p>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <div class="hero-top">
+        <h1 class="display"><span>Stay in your tab.</span> <span class="accent">Keep the music.</span></h1>
+        <div class="hero-side">
+          <p class="lede">Pink Player is a mini player for YouTube Music that drops down from your toolbar. Skip a song, read the lyrics or start a playlist, then get back to work.</p>
+          <div class="actions">
+            <a class="btn btn-dark" href="https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo">Add to Chrome</a>
+            <a class="btn btn-light" href="#get">Safari · soon</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="window">
+        <div class="window-tabs" aria-hidden="true">
+          <div class="window-dots"><span></span><span></span><span></span></div>
+          <div class="window-tab is-active">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b616e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>
+            <span>Q4 planning — Notes</span>
+          </div>
+          <div class="window-tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#5b616e"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></svg>
+            <span>YouTube Music</span>
+          </div>
+          <div class="window-tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b616e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span>Inbox</span>
+          </div>
+        </div>
+        <div class="window-bar" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b616e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b7bcc6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="window-url">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5b616e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            <span>notes.example.com/q4-planning</span>
+          </div>
+          <span class="window-ext"></span>
+          <span class="window-pp"><svg width="22" height="22" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#ff4d96"/><path d="M25 19 L25 45 L47 32 Z" fill="#fff"/></svg></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#5b616e"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+        </div>
+        <div class="window-stage">
+          <div class="doc" aria-hidden="true">
+            <span class="doc-title"></span>
+            <span class="doc-meta"></span>
+            <span style="width: 100%"></span>
+            <span style="width: 96%"></span>
+            <span style="width: 98%"></span>
+            <span style="width: 88%"></span>
+            <span style="width: 54%"></span>
+            <span class="doc-h"></span>
+            <span style="width: 94%"></span>
+            <span style="width: 100%"></span>
+            <span style="width: 72%"></span>
+            <div class="doc-box"><span style="width: 80%"></span><span style="width: 56%"></span></div>
+          </div>
+          <div class="window-popup">
+            <div class="pp-host" data-pp-player data-track="afterglow" data-tab="queue" data-theme="light" data-shadow="deep" data-live></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="tabs" aria-labelledby="tabs-title">
+      <p class="eyebrow">Inside the popup</p>
+      <h2 class="title" id="tabs-title">Three tabs. Everything you reach for.</h2>
+      <div class="trio">
+        <article class="trio-card">
+          <div class="trio-stage tint-lilac">
+            <div class="pp-host" data-pp-player data-track="afterglow" data-tab="queue" data-theme="light" data-shadow="soft"></div>
+          </div>
+          <h3>Up Next</h3>
+          <p>Your queue with album art. Click any song and it plays now.</p>
+        </article>
+        <article class="trio-card">
+          <div class="trio-stage tint-sky">
+            <div class="pp-host" data-pp-player data-track="tide" data-tab="lyrics" data-theme="light" data-shadow="soft" data-live></div>
+          </div>
+          <h3>Lyrics</h3>
+          <p>Synced lyrics that follow the song. Tap a line to jump there.</p>
+        </article>
+        <article class="trio-card">
+          <div class="trio-stage tint-blush">
+            <div class="pp-host" data-pp-player data-track="static" data-tab="playlists" data-theme="light" data-shadow="soft"></div>
+          </div>
+          <div class="trio-head">
+            <h3>Playlists</h3>
+            <span class="badge">NEW</span>
+          </div>
+          <p>Every playlist in your library. Pick one and it starts in your YouTube Music tab.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="wild" aria-labelledby="wild-title">
+      <p class="eyebrow">Out in the wild</p>
+      <h2 class="title title-sm" id="wild-title">The real thing, in Chrome and Safari.</h2>
+      <div class="wild">
+        <figure>
+          <a href="screenshots/wild-chrome.jpg">
+            <img src="screenshots/wild-chrome.jpg" width="1600" height="855" loading="lazy" alt="Pink Player open over a news site in Chrome, showing the Up Next queue" />
+          </a>
+          <figcaption>Chrome</figcaption>
+        </figure>
+        <figure>
+          <a href="screenshots/wild-safari.jpg">
+            <img src="screenshots/wild-safari.jpg" width="1600" height="686" loading="lazy" alt="Pink Player open over a blog post in Safari, showing synced lyrics" />
+          </a>
+          <figcaption>Safari · Mac build coming soon</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section wrap" id="keys" aria-labelledby="keys-title">
+      <div class="panel">
+        <div>
+          <p class="eyebrow">Keyboard</p>
+          <h2 class="title title-sm" id="keys-title">Hands stay on the keys.</h2>
+          <p class="copy">Shortcuts work in any tab while your browser is in front, even with the popup closed. Change them at chrome://extensions/shortcuts. ⌥ is Alt on Windows.</p>
+        </div>
+        <dl class="keys">
+          <div>
+            <dt>Play / pause</dt>
+            <dd><span class="sr-only">Option + Shift + Space</span><kbd aria-hidden="true">⌥</kbd><kbd aria-hidden="true">⇧</kbd><kbd class="wide" aria-hidden="true">Space</kbd></dd>
+          </div>
+          <div>
+            <dt>Next track</dt>
+            <dd><span class="sr-only">Option + Shift + Right arrow</span><kbd aria-hidden="true">⌥</kbd><kbd aria-hidden="true">⇧</kbd><kbd aria-hidden="true">→</kbd></dd>
+          </div>
+          <div>
+            <dt>Previous track</dt>
+            <dd><span class="sr-only">Option + Shift + Left arrow</span><kbd aria-hidden="true">⌥</kbd><kbd aria-hidden="true">⇧</kbd><kbd aria-hidden="true">←</kbd></dd>
+          </div>
+          <div>
+            <dt>Like the song</dt>
+            <dd class="note">Pick your own in Chrome</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section wrap" id="details" aria-labelledby="details-title">
+      <h2 class="title title-sm" id="details-title">And the small stuff.</h2>
+      <div class="details">
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5c3 3.6 6 6.9 6 10.2a6 6 0 0 1-12 0c0-3.3 3-6.6 6-10.2z"/></svg></span>
+          <div><h3>Adaptive color</h3><p>The player takes its tint from each song’s album art.</p></div>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 13.5A8.5 8.5 0 1 1 10.5 3.5 6.5 6.5 0 0 0 20.5 13.5z"/></svg></span>
+          <div><h3>Sleep timer</h3><p>15, 30 or 60 minutes, or the end of the track. Keeps counting with the popup closed.</p></div>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8 8M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></span>
+          <div><h3>Pop-out window</h3><p>A small floating player that stays open while you work.</p></div>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="#121418"/></svg></span>
+          <div><h3>Light and dark</h3><p>Follows your system appearance automatically.</p></div>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="14" height="12" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v10"/></svg></span>
+          <div><h3>Follows the music</h3><p>With several YouTube Music tabs open, it controls the one that’s playing.</p></div>
+        </div>
+        <div class="detail">
+          <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
+          <div><h3>Volume, likes, shuffle</h3><p>All the controls from the player bar, without switching tabs.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="privacy" aria-labelledby="privacy-title">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Privacy</p>
+          <h2 class="title title-sm" id="privacy-title">Private by default.</h2>
+          <p class="copy">Pink Player runs entirely in your browser. This is everything it touches.</p>
+          <a class="text-link" href="privacy.html">Read the privacy policy
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <dl class="facts">
+          <div><dt>Data collected</dt><dd>None</dd></div>
+          <div><dt>Analytics and ads</dt><dd>None</dd></div>
+          <div><dt>Account</dt><dd>Not needed</dd></div>
+          <div><dt>Site access</dt><dd>music.youtube.com and lrclib.net only</dd></div>
+          <div><dt>Your playlists</dt><dd>Read from YouTube Music in your own tab, not saved</dd></div>
+          <div><dt>Sent to LRCLib</dt><dd>Song title, artist and length, to find lyrics</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section wrap" id="get" aria-labelledby="get-title">
+      <div class="cta">
+        <div class="cta-copy">
+          <h2 id="get-title">Add the pink button to your toolbar.</h2>
+          <p>Pin it once and YouTube Music is a click away from every tab. Works in Chrome and Edge today, with Safari for Mac coming once the notarized build is ready.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-pink btn-lg" href="https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo">Add to Chrome</a>
+          <span class="pill-muted">Safari · coming soon</span>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <section class="features">
-    <article class="feature">
-      <img src="screenshots/feature-lyrics.png" alt="Synced lyrics in Pink Player" />
-      <div class="copy">
-        <h3>Synced lyrics, centered.</h3>
-        <p>Lyrics scroll with the music. Tap any line to seek. Free, instant, ad-free.</p>
-      </div>
-    </article>
-    <article class="feature">
-      <img src="screenshots/feature-queue.png" alt="Queue view in Pink Player" />
-      <div class="copy">
-        <h3>Your queue, one click away.</h3>
-        <p>See what's coming up with album art, and jump to any track instantly.</p>
-      </div>
-    </article>
-    <article class="feature">
-      <img src="screenshots/feature-sleep.png" alt="Sleep timer in Pink Player" />
-      <div class="copy">
-        <h3>Sleep timer for the nightcap.</h3>
-        <p>Stop after 15, 30, or 60 minutes — or at end of track. Keeps running even when the popup is closed.</p>
-      </div>
-    </article>
-  </section>
-
-  <section class="wild">
-    <h2>Out in the wild.</h2>
-    <p class="sub">Same player, native in both Chrome and Safari. Floats over any tab.</p>
-    <div class="shots">
-      <div class="shot">
-        <div class="frame">
-          <img src="screenshots/screenshot-chrome.png" alt="Pink Player popup in Chrome, over a Google page" />
-        </div>
-        <p class="label">Chrome</p>
-      </div>
-      <div class="shot">
-        <div class="frame">
-          <img src="screenshots/screenshot-safari.png" alt="Pink Player popup in Safari, over apple.com" />
-        </div>
-        <p class="label">Safari</p>
-      </div>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Pink Player — mini player for YouTube Music</span>
+      <span>Unofficial third-party tool. Not affiliated with or endorsed by YouTube or Google.</span>
+      <a href="privacy.html">Privacy</a>
     </div>
-  </section>
-
-  <footer class="footer">
-    <a href="privacy.html">Privacy</a> · Unofficial third-party tool. Not affiliated with or endorsed by YouTube or Google.
   </footer>
 </body>
 </html>
