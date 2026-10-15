@@ -135,21 +135,8 @@ a:hover { color: #9e1450; }
 .btn-lg { height: 54px; padding: 0 24px; }
 .btn-dark { background: var(--ink); color: #fff; }
 .btn-dark:hover { background: #2a2d35; color: #fff; }
-.btn-light { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(18, 20, 24, 0.14); }
-.btn-light:hover { color: var(--ink); box-shadow: inset 0 0 0 1px rgba(18, 20, 24, 0.32); }
 .btn-pink { background: var(--pink); color: var(--ink); font-weight: 700; }
 .btn-pink:hover { color: var(--ink); filter: brightness(1.06); }
-.pill-muted {
-  display: inline-flex;
-  align-items: center;
-  height: 54px;
-  padding: 0 20px;
-  border-radius: 14px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.72);
-  font-weight: 600;
-  white-space: nowrap;
-}
 
 /* -------------------------------------------------------------------------
    Hero
@@ -187,10 +174,21 @@ a:hover { color: #9e1450; }
   color: var(--dim);
   text-wrap: pretty;
 }
+.lede strong {
+  color: var(--ink);
+  font-weight: 600;
+}
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  gap: 12px 18px;
+}
+.hint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--dim);
 }
 
 /* Browser window illustration */
@@ -201,17 +199,19 @@ a:hover { color: #9e1450; }
   box-shadow: 0 60px 120px -40px rgba(18, 20, 24, 0.35), 0 0 0 1px rgba(18, 20, 24, 0.08);
   overflow: hidden;
 }
+/* A busy tab strip: eleven tabs squeezed like a real browser, YouTube Music buried in the middle */
 .window-tabs {
   height: 46px;
-  padding: 0 14px;
+  padding: 0 8px 0 14px;
   background: var(--chrome);
   display: flex;
   align-items: flex-end;
-  gap: 4px;
+  overflow: hidden;
 }
 .window-dots {
   align-self: center;
   display: flex;
+  flex-shrink: 0;
   gap: 7px;
   margin-right: 12px;
 }
@@ -222,27 +222,77 @@ a:hover { color: #9e1450; }
   background: #c9ced8;
 }
 .window-tab {
-  height: 36px;
+  position: relative;
+  flex: 1 1 0;
   min-width: 0;
-  flex: 0 1 210px;
-  padding: 0 14px;
+  max-width: 220px;
+  height: 36px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 7px;
+  font-size: 12.5px;
   color: var(--dim);
 }
-.window-tab svg { flex-shrink: 0; }
+.window-tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  bottom: 11px;
+  width: 1px;
+  background: #c4c9d3;
+}
+.window-dots + .window-tab::before,
+.window-tab.is-active::before,
+.window-tab.is-active + .window-tab::before { display: none; }
+.window-tab svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.window-tab .solid { fill: currentColor; stroke: none; }
 .window-tab span {
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.window-tab .audible {
+  width: 13px;
+  height: 13px;
+  margin-left: auto;
+}
 .window-tab.is-active {
-  flex-basis: 250px;
   border-radius: 10px 10px 0 0;
   background: var(--surface);
   color: var(--ink);
+}
+.window-tab.is-music { color: var(--ink); }
+.window-tab.is-music svg { color: var(--pink-text); }
+.window-new {
+  flex-shrink: 0;
+  align-self: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dim);
+}
+.window-new svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 .window-bar {
   height: 52px;
@@ -666,7 +716,11 @@ kbd.wide { padding: 0 16px; }
 @media (max-width: 760px) {
   .hide-sm { display: none !important; }
   .section { padding-top: 96px; }
-  .window-tab:not(.is-active) { display: none; }
+  .window-dots { display: none; }
+  .window-tab:not(.is-active) { flex: 0 0 24px; padding: 0 5px; }
+  .window-tab:not(.is-active) span,
+  .window-tab .audible { display: none; }
+  .window-tab.is-active { flex: 0 0 auto; max-width: 128px; }
   .doc { display: none; }
   .window-stage { height: 430px; }
   .window-popup { right: auto; left: 50%; transform: translateX(-50%); }
