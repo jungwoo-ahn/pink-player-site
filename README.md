@@ -6,9 +6,9 @@ Mini player for **YouTube Music** — in Chrome and Safari. Adaptive color from 
 
 ## Get it
 
-| 🌐 [pink-player site](https://jungwoo-ahn.github.io/pink-player-site/) | 🟢 [Add to Chrome](https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo) | 🍎 [Download for Mac](https://github.com/jungwoo-ahn/pink-player-site/releases/tag/mac-v1.0-debug) |
+| 🌐 [pink-player site](https://jungwoo-ahn.github.io/pink-player-site/) | 🟢 [Add to Chrome](https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo) | 🍎 [Mac App Store](https://apps.apple.com/app/id6823947078) |
 | :---: | :---: | :---: |
-| The landing page | Chrome Web Store | Safari (experimental, Apple Silicon only) |
+| The landing page | Chrome Web Store | Safari on Mac |
 
 ## Features
 
@@ -26,12 +26,11 @@ Mini player for **YouTube Music** — in Chrome and Safari. Adaptive color from 
 
 ## What's in this repo
 
-This is the **public landing page + Mac release host** for Pink Player.
+This is the **public landing page** for Pink Player.
 
 - [`index.html`](./index.html) — the landing page served at [jungwoo-ahn.github.io/pink-player-site](https://jungwoo-ahn.github.io/pink-player-site/)
 - [`privacy.html`](./privacy.html) — privacy policy
 - [`screenshots/`](./screenshots) — image assets used by the page + this README
-- [GitHub Releases](https://github.com/jungwoo-ahn/pink-player-site/releases) — public-facing Mac downloads
 
 The extension source code lives in a separate (currently private) repo.
 

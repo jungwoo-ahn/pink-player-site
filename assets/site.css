@@ -138,6 +138,22 @@ a:hover { color: #9e1450; }
 .btn-pink { background: var(--pink); color: var(--ink); font-weight: 700; }
 .btn-pink:hover { color: var(--ink); filter: brightness(1.06); }
 
+/* Apple's "Download on the Mac App Store" badge, used as-is at button height */
+.store-badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: transform 120ms ease;
+}
+.store-badge:active { transform: scale(0.98); }
+.store-badge img { display: block; width: auto; height: 50px; }
+.cta .store-badge img { height: 54px; }
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
 /* -------------------------------------------------------------------------
    Hero
    ------------------------------------------------------------------------- */
@@ -569,6 +585,16 @@ a:hover { color: #9e1450; }
   margin-top: 12px;
   font-size: 14.5px;
   color: var(--dim);
+}
+/* A text link in a caption, not the image card style of `.wild a` */
+.wild figcaption a,
+.wild figcaption a:hover {
+  display: inline;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  transform: none;
+  color: inherit;
 }
 
 /* Keyboard */
