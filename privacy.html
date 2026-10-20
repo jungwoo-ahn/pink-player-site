@@ -31,7 +31,7 @@
   <main id="main" class="wrap">
     <article class="policy">
       <h1>Privacy Policy</h1>
-      <p class="updated">Pink Player — Mini for YouTube Music · Last updated 2026-10-15</p>
+      <p class="updated">Pink Player — Mini for YouTube Music · Last updated 2026-10-20</p>
 
       <h2>Summary</h2>
       <ul>
@@ -39,7 +39,7 @@
         <li>It does <strong>not</strong> create an account. It uses your existing YouTube Music sign-in only to load your own playlists from YouTube Music.</li>
         <li>It does <strong>not</strong> collect, store, or transmit personally identifying information.</li>
         <li>It does <strong>not</strong> use analytics, telemetry, ads, or tracking pixels.</li>
-        <li>Apart from YouTube Music itself, the only network requests it makes are to <a href="https://lrclib.net">LRCLib</a> to fetch synchronized lyrics for the track you are currently playing.</li>
+        <li>Apart from YouTube Music itself, it makes network requests only to <a href="https://lrclib.net">LRCLib</a>, to fetch synchronized lyrics for the track you are playing, and, if you enter a Pink Player Pro license key, to <a href="https://polar.sh">Polar</a>, to check that key.</li>
       </ul>
 
       <h2>What data the extension accesses</h2>
@@ -54,7 +54,9 @@
       <p>To list your playlists, the extension asks YouTube Music for them from inside your own YouTube Music tab, the same way the YouTube Music website loads your library. That request goes only to YouTube Music. To sign it the way YouTube expects, the extension reads YouTube's <code>SAPISID</code> sign-in cookie inside that tab; the cookie is never stored by the extension or sent anywhere other than YouTube Music. The playlist list is kept in memory for about a minute so the tab opens quickly, and is never written to disk.</p>
 
       <h2>What data is transmitted off-device</h2>
-      <p>To display synchronized lyrics, the extension sends the <strong>track title</strong>, <strong>artist name</strong>, and <strong>track duration</strong> to <a href="https://lrclib.net">https://lrclib.net</a>, a community-run lyrics database. No personal identifiers, IP-based identifiers, or YouTube account information are included in this request. LRCLib operates under its own privacy practices documented on its website. The extension does not transmit anything to any other third party.</p>
+      <p>To display synchronized lyrics, the extension sends the <strong>track title</strong>, <strong>artist name</strong>, and <strong>track duration</strong> to <a href="https://lrclib.net">https://lrclib.net</a>, a community-run lyrics database. No personal identifiers, IP-based identifiers, or YouTube account information are included in this request. LRCLib operates under its own privacy practices documented on its website.</p>
+      <p>If you buy <a href="terms.html">Pink Player Pro</a> and enter your license key, the extension sends the <strong>key</strong> and Pink Player's account ID at Polar to <code>https://api.polar.sh</code> to check that the key is valid. It checks again every few days, so a refunded key stops working. Nothing else is sent. You buy Pro on Polar's checkout page, not in the extension, so Pink Player never sees your payment details or address; Polar (Polar Software, Inc.) processes the order as merchant of record under its <a href="https://polar.sh/legal/privacy-policy">privacy policy</a>.</p>
+      <p>The extension does not transmit anything to any other third party.</p>
 
       <h2>Local storage on your device</h2>
       <p>The extension stores the following inside Chrome's local extension storage (<code>chrome.storage.local</code>), which is sandboxed to the extension and never synced to Google:</p>
@@ -62,6 +64,7 @@
         <li>Sleep timer state (mode and target time, while a timer is active).</li>
         <li>The volume level you last set, so it carries over between tracks.</li>
         <li>The ID of the browser tab where YouTube Music was last found (a number and a timestamp), so the popup reconnects quickly. No page address or content is stored.</li>
+        <li>Your Pink Player Pro status: whether the Playlists panel is free for you (set when you updated from a version made before Pro) and, if you bought Pro, your license key and when it was last checked. This one item is also kept in <code>chrome.storage.sync</code>, so if you're signed in to Chrome it follows you to your other computers.</li>
       </ul>
       <p>That's it. No listening history, no personal identifiers.</p>
 
@@ -74,6 +77,7 @@
         <li>Host permission for <code>music.youtube.com</code>: to read player state and send playback commands.</li>
         <li>Host permission for <code>lrclib.net</code>: to fetch lyrics, as described above.</li>
       </ul>
+      <p>The Pro license check needs no extra permission: it is an ordinary web request to Polar, which Polar allows from any site.</p>
 
       <h2>Children</h2>
       <p>The extension is not directed at children under 13 and does not knowingly collect any data from them.</p>
@@ -91,6 +95,7 @@
       <span>Pink Player — mini player for YouTube Music</span>
       <span>Unofficial third-party tool. Not affiliated with or endorsed by YouTube or Google.</span>
       <a href="index.html">Home</a>
+      <a href="terms.html">Terms</a>
     </div>
   </footer>
 </body>
