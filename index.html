@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pink Player — Mini player for YouTube Music</title>
-  <meta name="description" content="A mini player for YouTube Music that drops down from your browser toolbar. Synced lyrics, your queue and your playlists, one click from any tab." />
+  <meta name="description" content="A mini player for YouTube Music that drops down from your browser toolbar. Search, queue songs and read synced lyrics, one click from any tab." />
   <link rel="canonical" href="https://jungwoo-ahn.github.io/pink-player-site/" />
   <meta name="theme-color" content="#eef0f4" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jungwoo-ahn.github.io/pink-player-site/" />
   <meta property="og:title" content="Pink Player — Mini player for YouTube Music" />
-  <meta property="og:description" content="Stay in your tab. Keep the music. Synced lyrics, your queue and your playlists, one click from any tab." />
+  <meta property="og:description" content="Stay in your tab. Keep the music. Search, queue songs and read synced lyrics, one click from any tab." />
   <meta property="og:image" content="https://jungwoo-ahn.github.io/pink-player-site/screenshots/og-image.png" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="640" />
@@ -20,8 +20,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" />
   <link rel="stylesheet" href="assets/site.css" />
-  <link rel="stylesheet" href="assets/player.css" />
-  <script src="assets/player.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -33,6 +31,7 @@
         Pink Player
       </a>
       <nav class="nav" aria-label="Main">
+        <a class="nav-link hide-sm" href="#search">Search</a>
         <a class="nav-link hide-sm" href="#tabs">Inside</a>
         <a class="nav-link hide-sm" href="#keys">Shortcuts</a>
         <a class="nav-link hide-sm" href="#privacy">Privacy</a>
@@ -45,7 +44,7 @@
       <div class="hero-top">
         <h1 class="display"><span>Stay in your tab.</span> <span class="accent">Keep the music.</span></h1>
         <div class="hero-side">
-          <p class="lede">Pink Player is a mini player for <strong>YouTube Music</strong> that drops down from your toolbar. Skip a song, read the lyrics or start a playlist, then get back to work.</p>
+          <p class="lede">Pink Player is a mini player for <strong>YouTube Music</strong> that drops down from your toolbar. Find a song, line up what plays next or read the lyrics, then get back to work.</p>
           <div class="actions">
             <a class="btn btn-dark" href="https://chromewebstore.google.com/detail/pink-player-%E2%80%94-mini-for-yo/aaikooaeajlfemfgfmembjkpbppmfloo">Add to Chrome</a>
             <p class="hint">Works in Edge too.<br />Safari for Mac is coming soon.</p>
@@ -130,8 +129,30 @@
             <div class="doc-box"><span style="width: 80%"></span><span style="width: 56%"></span></div>
           </div>
           <div class="window-popup">
-            <div class="pp-host" data-pp-player data-track="afterglow" data-tab="queue" data-theme="light" data-shadow="deep" data-live></div>
+            <div class="pp-frame">
+              <iframe src="demo/popup.html?track=afterglow" width="360" height="466" title="Pink Player demo: the real popup, playing made-up songs"></iframe>
+            </div>
           </div>
+        </div>
+      </div>
+      <p class="demo-note">This is the real popup, playing made-up songs. Go ahead: skip, search, edit the queue.</p>
+    </section>
+
+    <section class="section wrap" id="search" aria-labelledby="search-title">
+      <div class="feature">
+        <div class="feature-copy">
+          <p class="eyebrow">New in 0.4</p>
+          <h2 class="title title-sm" id="search-title">Search without leaving your tab.</h2>
+          <p class="copy">Find any song on YouTube Music right from the toolbar. Suggestions show up as you type, and YouTube Music’s own filters narrow the results to songs, albums, artists or playlists.</p>
+          <ul class="ticks">
+            <li><strong>Play it now, play it next</strong> or add it to the end of your queue.</li>
+            <li><strong>Search your library</strong> when you’re signed in to YouTube Music.</li>
+            <li><strong>Your last five searches</strong> stay on your device, one click away.</li>
+            <li><strong>Free for everyone</strong>, like everything but the Playlists tab.</li>
+          </ul>
+        </div>
+        <div class="feature-stage tint-blush">
+          <img src="screenshots/popup-search.webp" width="360" height="466" loading="lazy" alt="The Pink Player popup searching for “regent’s park”: made-up songs filtered to Songs, a ✓ on the one just set to play next" />
         </div>
       </div>
     </section>
@@ -142,21 +163,21 @@
       <div class="trio">
         <article class="trio-card">
           <div class="trio-stage tint-lilac">
-            <div class="pp-host" data-pp-player data-track="afterglow" data-tab="queue" data-theme="light" data-shadow="soft"></div>
+            <img src="screenshots/popup-upnext.webp" width="360" height="466" loading="lazy" alt="Up Next: Playing from Liked Music, the song that just played, durations, and a song removed with Undo" />
           </div>
           <h3>Up Next</h3>
-          <p>Your queue with album art. Click any song and it plays now.</p>
+          <p>See what you’re playing from, what just played and what’s next. Click a song to play it, or remove one and undo it right away.</p>
         </article>
         <article class="trio-card">
           <div class="trio-stage tint-sky">
-            <div class="pp-host" data-pp-player data-track="tide" data-tab="lyrics" data-theme="light" data-shadow="soft" data-live></div>
+            <img src="screenshots/popup-lyrics.webp" width="360" height="466" loading="lazy" alt="Synced lyrics with the current line centered" />
           </div>
           <h3>Lyrics</h3>
-          <p>Synced lyrics that follow the song. Tap a line to jump there.</p>
+          <p>Synced lyrics that follow the song and keep the current line centered. Tap a line to jump there.</p>
         </article>
         <article class="trio-card">
           <div class="trio-stage tint-blush">
-            <div class="pp-host" data-pp-player data-track="static" data-tab="playlists" data-theme="light" data-shadow="soft"></div>
+            <img src="screenshots/popup-playlists.webp" width="360" height="466" loading="lazy" alt="Your YouTube Music playlists, with Shuffle and Play next on a row" />
           </div>
           <div class="trio-head">
             <h3>Playlists</h3>
@@ -191,7 +212,7 @@
         <div>
           <p class="eyebrow">Keyboard</p>
           <h2 class="title title-sm" id="keys-title">Hands stay on the keys.</h2>
-          <p class="copy">Shortcuts work in any tab while your browser is in front, even with the popup closed. Change them at chrome://extensions/shortcuts. ⌥ is Alt on Windows.</p>
+          <p class="copy">In the popup, Space plays or pauses, the arrows skip and change the volume, and <kbd>?</kbd> shows every key. In Chrome and Edge, the <kbd>⌥</kbd><kbd>⇧</kbd> shortcuts work in any tab, even with the popup closed. Change them at chrome://extensions/shortcuts. ⌥ is Alt on Windows.</p>
         </div>
         <dl class="keys">
           <div>
@@ -205,6 +226,10 @@
           <div>
             <dt>Previous track</dt>
             <dd><span class="sr-only">Option + Shift + Left arrow</span><kbd aria-hidden="true">⌥</kbd><kbd aria-hidden="true">⇧</kbd><kbd aria-hidden="true">←</kbd></dd>
+          </div>
+          <div>
+            <dt>Search, in the popup</dt>
+            <dd><span class="sr-only">Slash</span><kbd aria-hidden="true">/</kbd></dd>
           </div>
           <div>
             <dt>Like the song</dt>
@@ -259,6 +284,7 @@
           <div><dt>Analytics and ads</dt><dd>None</dd></div>
           <div><dt>Account</dt><dd>Not needed</dd></div>
           <div><dt>Site access</dt><dd>music.youtube.com and lrclib.net only</dd></div>
+          <div><dt>Your searches</dt><dd>Sent only to YouTube Music, from your own tab. Your last five stay on your device</dd></div>
           <div><dt>Your playlists</dt><dd>Read from YouTube Music in your own tab, not saved</dd></div>
           <div><dt>Sent to LRCLib</dt><dd>Song title, artist and length, to find lyrics</dd></div>
           <div><dt>Sent to Polar</dt><dd>Your Pro license key, only if you buy Pro</dd></div>

@@ -31,14 +31,15 @@
   <main id="main" class="wrap">
     <article class="policy">
       <h1>Privacy Policy</h1>
-      <p class="updated">Pink Player — Mini for YouTube Music · Last updated 2026-10-20</p>
+      <p class="updated">Pink Player — Mini for YouTube Music · Last updated 2026-10-23</p>
 
       <h2>Summary</h2>
       <ul>
         <li>The extension runs entirely on your own device.</li>
-        <li>It does <strong>not</strong> create an account. It uses your existing YouTube Music sign-in only to load your own playlists from YouTube Music.</li>
+        <li>It does <strong>not</strong> create an account. It uses your existing YouTube Music sign-in only inside your YouTube Music tab: to load your own playlists, and to search YouTube Music the way its own search box does.</li>
         <li>It does <strong>not</strong> collect, store, or transmit personally identifying information.</li>
         <li>It does <strong>not</strong> use analytics, telemetry, ads, or tracking pixels.</li>
+        <li>Search runs inside your YouTube Music tab: what you type goes to YouTube Music, exactly as if you searched on its site. Your last five searches stay on your device so you can repeat them.</li>
         <li>Apart from YouTube Music itself, it makes network requests only to <a href="https://lrclib.net">LRCLib</a>, to fetch synchronized lyrics for the track you are playing, and, if you enter a Pink Player Pro license key, to <a href="https://polar.sh">Polar</a>, to check that key.</li>
       </ul>
 
@@ -48,10 +49,12 @@
         <li>title, artist, album-art image URL, and duration of the current track,</li>
         <li>current playback position, paused/playing state, volume, like state,</li>
         <li>list of upcoming tracks in your YouTube Music queue,</li>
-        <li>the playlists in your YouTube Music library (title, song count, thumbnail, and playlist ID), when you open the Playlists tab.</li>
+        <li>the playlists in your YouTube Music library (title, song count, thumbnail, and playlist ID), when you open the Playlists tab,</li>
+        <li>when you search from the popup, your search text and the results YouTube Music returns.</li>
       </ul>
       <p>This data is used solely to display the mini-player UI in the extension popup and is never written to any server or stored beyond the current browser session, except for the few settings listed under "Local storage on your device" below.</p>
-      <p>To list your playlists, the extension asks YouTube Music for them from inside your own YouTube Music tab, the same way the YouTube Music website loads your library. That request goes only to YouTube Music. To sign it the way YouTube expects, the extension reads YouTube's <code>SAPISID</code> sign-in cookie inside that tab; the cookie is never stored by the extension or sent anywhere other than YouTube Music. The playlist list is kept in memory for about a minute so the tab opens quickly, and is never written to disk.</p>
+      <p>To list your playlists and to search, the extension asks YouTube Music from inside your own YouTube Music tab, the same way the YouTube Music website loads your library and runs its search box. Those requests go only to YouTube Music. To sign them the way YouTube expects, the extension reads YouTube's <code>SAPISID</code> sign-in cookie inside that tab; the cookie is never stored by the extension or sent anywhere other than YouTube Music. The playlist list is kept in memory for about a minute, and search results and suggestions for up to two minutes, so going back is instant; neither is ever written to disk.</p>
+      <p>Playing or queueing a search result, and removing a song from Up Next, use YouTube Music's own controls in that tab, so your queue changes exactly as it would on the YouTube Music website.</p>
 
       <h2>What data is transmitted off-device</h2>
       <p>To display synchronized lyrics, the extension sends the <strong>track title</strong>, <strong>artist name</strong>, and <strong>track duration</strong> to <a href="https://lrclib.net">https://lrclib.net</a>, a community-run lyrics database. No personal identifiers, IP-based identifiers, or YouTube account information are included in this request. LRCLib operates under its own privacy practices documented on its website.</p>
@@ -62,6 +65,7 @@
       <p>The extension stores the following inside Chrome's local extension storage (<code>chrome.storage.local</code>), which is sandboxed to the extension and never synced to Google:</p>
       <ul>
         <li>Sleep timer state (mode and target time, while a timer is active).</li>
+        <li>Your last five searches, so the search panel can offer them again. You can remove them one by one or clear them all in the search panel.</li>
         <li>The volume level you last set, so it carries over between tracks.</li>
         <li>The ID of the browser tab where YouTube Music was last found (a number and a timestamp), so the popup reconnects quickly. No page address or content is stored.</li>
         <li>Your Pink Player Pro status: whether the Playlists panel is free for you (set when you updated from a version made before Pro) and, if you bought Pro, your license key and when it was last checked. This one item is also kept in <code>chrome.storage.sync</code>, so if you're signed in to Chrome it follows you to your other computers.</li>
@@ -74,7 +78,7 @@
         <li><code>storage</code>: to remember the items listed under "Local storage on your device" above.</li>
         <li><code>alarms</code>: to fire the sleep timer at the requested time.</li>
         <li><code>scripting</code>: to load Pink Player into a YouTube Music tab that was already open before the extension was installed or updated (so you don't have to reload it), and to confirm a tab is YouTube Music before sending it commands.</li>
-        <li>Host permission for <code>music.youtube.com</code>: to read player state and send playback commands.</li>
+        <li>Host permission for <code>music.youtube.com</code>: to read player state and send playback commands, and, when you ask, to search YouTube Music, change your queue and load your playlists from inside that tab.</li>
         <li>Host permission for <code>lrclib.net</code>: to fetch lyrics, as described above.</li>
       </ul>
       <p>The Pro license check needs no extra permission: it is an ordinary web request to Polar, which Polar allows from any site.</p>
